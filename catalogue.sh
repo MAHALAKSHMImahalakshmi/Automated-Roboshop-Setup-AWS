@@ -77,5 +77,5 @@ dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE $? "Installing MongoDB Client"
 
 
-    mongosh --host mongodb.srivenkata.shop </app/db/master-data.js &>>$LOG_FILE
-    VALIDATE $? "Loading data into MongoDB"
+mongosh --host mongodb.srivenkata.shop </app/db/master-data.js &>>$LOG_FILE
+VALIDATE $? "Loading data into MongoDB"
