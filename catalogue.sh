@@ -78,7 +78,7 @@ VALIDATE $? "Installing MongoDB Client"
 
 
 STATUS=$(mongosh --host mongodb.srivenkata.shop --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
-if [ $STATUS -eq 0 ]
+if [ $STATUS -lt 0 ]
 then
     mongosh --host mongodb.srivenkata.shop </app/db/master-data.js &>>$LOG_FILE
     VALIDATE $? "Loading data into MongoDB"
