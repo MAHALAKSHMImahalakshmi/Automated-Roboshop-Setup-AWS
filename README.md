@@ -114,6 +114,96 @@ My goal: **Zero manual steps, 100% automation, and bulletproof reliability!** �
 
 ---
 
+
+---
+
+## 🛠️ Debugging & Troubleshooting Tips
+
+During my automation journey, I faced several real-world issues that taught me valuable lessons in troubleshooting and DevOps best practices. Here’s what I learned and how I debugged common problems:
+
+### 😅 My Common Mistakes & Lessons Learned
+
+- **❌ Forgot to Update IP Address in Route 53**
+  - *Issue:* After launching a new EC2 instance or restarting, the public IP changed, but I forgot to update the DNS record in Route 53.
+  - *Fix:* Always double-check and update the DNS record to point to the correct IP. Use `nslookup <domain-name>` to verify DNS propagation.
+
+- **❌ Missed Updating IP in `nginx.conf` for Reverse Proxy**
+  - *Issue:* When backend service IPs changed, I sometimes forgot to update the Nginx config, causing 502/504 errors.
+  - *Fix:* Always update the `proxy_pass` directive in `nginx.conf` with the correct backend IP/domain. Reload Nginx after changes:  
+  
+- **❌ Forgot to Restart Services After Config Changes**
+  - *Issue:* Made changes to environment variables or configs but forgot to restart the service, so changes didn’t take effect.
+  - *Fix:* Always restart the relevant service after any config change:  
+    ```bash
+    sudo systemctl restart <service-name>
+    ```
+
+### 🔍 My Debugging Toolkit
+
+- **Check Listening Ports**
+  ```bash
+  netstat -lntp
+  ```
+  *See if your service is running and listening on the expected port.*
+
+- **Test Port Connectivity**
+  ```bash
+  telnet <ip-address or domain-name> <port>
+  ```
+  *Check if a service is reachable from another server or your local machine.*
+
+  ### 🌐 Common Ports for Roboshop Services
+
+| Service    | Default Port |
+|------------|-------------|
+| Frontend   | 80          |
+| Cart       | 8080        |
+| MongoDB    | 27017       |
+| MySQL      | 3306        |
+| Redis      | 6379        |
+| RabbitMQ   | 5672        |
+
+
+- **Check DNS Resolution**
+  ```bash
+  nslookup <domain-name>
+  ```
+  *Verify your domain points to the correct IP address.*
+
+
+- **Restart Services**
+  ```bash
+  sudo systemctl restart <service-name>
+  sudo systemctl status <service-name>
+  ```
+  *Ensure your changes are applied and the service is running.*
+
+
+### ☁️ Steps to Create AWS EC2 Instances
+
+1. **Login to AWS Console** and go to EC2 Dashboard.
+2. **Launch Instance**: Choose an Amazon Linux 2 or Ubuntu AMI.
+3. **Configure Instance Details**: Set network, IAM role, etc.
+4. **Add Storage**: Adjust disk size if needed.
+5. **Add Tags**: Name your instance (e.g., `roboshop-cart`).
+6. **Configure Security Group**: Open required ports (see table above).
+7. **Review and Launch**: Select or create a key pair for SSH access.
+8. **Associate Elastic IP** (optional): For static public IP.
+9. **Update Route 53 DNS**: Point your domain/subdomain to the instance’s public IP.
+
+---
+
+### 💡 Pro Tips
+
+- Always check port status and DNS before deep-diving into application logs.
+- After any config or DNS change, clear your browser cache or use `curl` to avoid cached responses.
+- Document every change—automation is only as good as your documentation!
+
+---
+
+**Sharing my mistakes and how I fixed them shows my real-world troubleshooting skills and my commitment to continuous learning—qualities I bring to every DevOps role!** 🚀
+
+
 ## 🙌 Thank You!
 
 If you like this project or want to collaborate, feel free to connect!  
