@@ -117,66 +117,45 @@ My goal: **Zero manual steps, 100% automation, and bulletproof reliability!** �
 
 ---
 
-## 🛠️ Debugging & Troubleshooting Tips
+##🛠️ Debugging & Troubleshooting Tips
 
 During my automation journey, I faced several real-world issues that taught me valuable lessons in troubleshooting and DevOps best practices. Here’s what I learned and how I debugged common problems:
 
 ### 😅 My Common Mistakes & Lessons Learned
 
-- **❌ Forgot to Update IP Address in Route 53**
-  - *Issue:* After launching a new EC2 instance or restarting, the public IP changed, but I forgot to update the DNS record in Route 53.
-  - *Fix:* Always double-check and update the DNS record to point to the correct IP. Use `nslookup <domain-name>` to verify DNS propagation.
+| Mistake                                             | Issue                                                                 | Fix / Lesson Learned                                                                                 |
+|-----------------------------------------------------|-----------------------------------------------------------------------|------------------------------------------------------------------------------------------------------|
+| ❌🔄 Forgot to Update IP Address in Route 53         | After launching/restarting EC2, public IP changed, but DNS not updated | Always update DNS record. Use `🔍 nslookup <domain-name>` to verify DNS propagation.                  |
+| ❌🔁 Missed Updating IP in `nginx.conf` for Proxy    | Backend IPs changed, Nginx config not updated, causing 502/504 errors  | Always update `📝 proxy_pass` in `nginx.conf` and 🔄 reload Nginx after changes.                      |
+| ❌🔃 Forgot to Restart Services After Config Changes | Made config changes but forgot to restart service, so changes didn’t apply | Always restart the relevant service after any config change:<br> `🚀 sudo systemctl restart <service>` |
 
-- **❌ Missed Updating IP in `nginx.conf` for Reverse Proxy**
-  - *Issue:* When backend service IPs changed, I sometimes forgot to update the Nginx config, causing 502/504 errors.
-  - *Fix:* Always update the `proxy_pass` directive in `nginx.conf` with the correct backend IP/domain. Reload Nginx after changes:  
-  
-- **❌ Forgot to Restart Services After Config Changes**
-  - *Issue:* Made changes to environment variables or configs but forgot to restart the service, so changes didn’t take effect.
-  - *Fix:* Always restart the relevant service after any config change:  
-    ```bash
-    sudo systemctl restart <service-name>
-    ```
+---
 
-### 🔍 My Debugging Toolkit
+### 🛠️🔍 My Debugging Toolkit
 
-- **Check Listening Ports**
-  ```bash
-  netstat -lntp
-  ```
-  *See if your service is running and listening on the expected port.*
+| Task                   | Command Example                                         | Purpose/Tip                                                        |
+|------------------------|--------------------------------------------------------|--------------------------------------------------------------------|
+| 🔎 Check Listening Ports  | `netstat -lntp`                                        | See if your service is running and listening on the expected port. |
+| 🌐 Test Port Connectivity | `telnet <ip/domain> <port>`                            | Check if a service is reachable from another server or your machine.|
+| 🧭 Check DNS Resolution   | `nslookup <domain-name>`                               | Verify your domain points to the correct IP address.               |
+| 🔄 Restart Services       | `sudo systemctl restart <service-name>`<br>`sudo systemctl status <service-name>` | Ensure your changes are applied and the service is running.         |
 
-- **Test Port Connectivity**
-  ```bash
-  telnet <ip-address or domain-name> <port>
-  ```
-  *Check if a service is reachable from another server or your local machine.*
+---
 
-  ### 🌐 Common Ports for Roboshop Services
+### 🌐📦 Common Ports for Roboshop Services
 
-| Service    | Default Port |
-|------------|-------------|
-| Frontend   | 80          |
-| Cart       | 8080        |
-| MongoDB    | 27017       |
-| MySQL      | 3306        |
-| Redis      | 6379        |
-| RabbitMQ   | 5672        |
+| 🚀 Service    | 🔢 Default Port |
+|--------------|----------------|
+| 🖥️ Frontend   | 80             |
+| 🛒 Cart       | 8080           |
+| 🍃 MongoDB    | 27017          |
+| 🐬 MySQL      | 3306           |
+| 🧊 Redis      | 6379           |
+| 🐇 RabbitMQ   | 5672           |
 
+---
 
-- **Check DNS Resolution**
-  ```bash
-  nslookup <domain-name>
-  ```
-  *Verify your domain points to the correct IP address.*
-
-
-- **Restart Services**
-  ```bash
-  sudo systemctl restart <service-name>
-  sudo systemctl status <service-name>
-  ```
-  *Ensure your changes are applied and the service is running.*
+> 💡✨ Each mistake made me a better troubleshooter and more reliable DevOps engineer!
 
 
 ### ☁️ Steps to Create AWS EC2 Instances
