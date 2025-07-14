@@ -1,5 +1,6 @@
 #!/bin/bash
 
+SCRIPT_DIR=$PWD
 VALIDATE(){
 
     if [  $1 -eq 0 ]
@@ -52,7 +53,7 @@ systemctl enable catalogue
 systemctl start catalogue
 
 dnf install mongodb-mongosh -y
-cp mongo.repo /etc/yum.repos.d/mongo.repo
+cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
 
 STATUS=$(mongosh --host mongodb.jaiganesha.shop --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
 if [ $STATUS -lt 0 ]
