@@ -45,3 +45,20 @@ VALIDATE $? "unzip"
 cd /app
 npm install
 VALIDATE $? "npm"
+
+
+systemctl daemon-reload
+systemctl enable catalogue
+systemctl start catalogue
+
+dnf install mongodb-mongosh -y
+cp mongo.repo /etc/yum.repos.d/mongo.repo
+
+STATUS=$(mongosh --host mongodb.jaiganesha.shop --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
+if [ $STATUS -lt 0 ]
+then
+    mongosh --host mongodb.jaiganesha.shop </app/db/master-data.js
+
+else
+    echo -e "Data is already loaded ... $Y SKIPPING $N"
+fi
