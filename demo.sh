@@ -23,8 +23,14 @@ VALIDATE $? "Install"
 cp catalogue.service /etc/systemd/system/catalogue.service
 VALIDATE $? "service cata copy"
 
-useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
-VALIDATE $? "creatsed user add"
+id roboshop #  output 0
+if [ $? -ne 0 ]
+then
+    useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop &>>$LOG_FILE
+    VALIDATE $? "Creating roboshop system user"
+else
+    echo -e "System user roboshop already created ... $Y SKIPPING $N"
+fi
 
 rm -rf /app/*
 mkdir -p  /app
