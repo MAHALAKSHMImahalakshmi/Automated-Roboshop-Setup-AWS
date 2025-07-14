@@ -49,12 +49,16 @@ VALIDATE $? "npm"
 
 
 systemctl daemon-reload
+VALIDATE $? "reload"
 systemctl enable catalogue
+VALIDATE $? "enable"
 systemctl start catalogue
+VALIDATE $? "start"
 
 cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
+VALIDATE $? "copy"
 dnf install mongodb-mongosh -y
-
+VALIDATE $? "mongodb"
 
 mongosh --host mongodb.jaiganesha.shop </app/db/master-data.js
 
