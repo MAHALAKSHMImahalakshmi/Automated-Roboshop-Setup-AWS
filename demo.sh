@@ -22,3 +22,9 @@ VALIDATE $? "Install"
 
 cp catalogue.service /etc/systemd/system/catalogue.service
 VALIDATE $? "service cata copy"
+
+useradd  roboshop
+VALIDATE $? "creatsed user add"
+rm -rf /app/*
+mkdir -p  /app
+VALIDATE $? "creatsed app dir"
