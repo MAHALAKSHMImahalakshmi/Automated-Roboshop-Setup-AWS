@@ -23,7 +23,7 @@ VALIDATE $? "Install"
 cp catalogue.service /etc/systemd/system/catalogue.service
 VALIDATE $? "service cata copy"
 
-useradd roboshop
+useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop
 VALIDATE $? "creatsed user add"
 
 rm -rf /app/*
