@@ -56,11 +56,5 @@ cp mongo.repo /etc/yum.repos.d/mongo.repo
 dnf install mongodb-mongosh -y
 
 
-STATUS=$(mongosh --host mongodb.jaiganesha.shop --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
-if [ $STATUS -lt 0 ]
-then
-    mongosh --host mongodb.jaiganesha.shop </app/db/master-data.js
+mongosh --host mongodb.jaiganesha.shop </app/db/master-data.js
 
-else
-    echo -e "Data is already loaded ... $Y SKIPPING $N"
-fi
