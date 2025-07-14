@@ -35,3 +35,13 @@ fi
 rm -rf /app/*
 mkdir -p  /app
 VALIDATE $? "creatsed app dir"
+
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
+VALIDATE $? "catalogue download"
+cd /app
+
+unzip /tmp/catalogue.zip
+VALIDATE $? "unzip"
+cd /app
+npm install
+VALIDATE $? "npm"
