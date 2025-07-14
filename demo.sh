@@ -52,8 +52,9 @@ systemctl daemon-reload
 systemctl enable catalogue
 systemctl start catalogue
 
-dnf install mongodb-mongosh -y
 cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
+dnf install mongodb-mongosh -y
+
 
 STATUS=$(mongosh --host mongodb.jaiganesha.shop --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
 if [ $STATUS -lt 0 ]
