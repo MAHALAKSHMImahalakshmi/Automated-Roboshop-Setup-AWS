@@ -191,3 +191,29 @@ If you like this project or want to collaborate, feel free to connect!
 ---
 
 > *“Automation is good, so long as you know exactly where to put the machine.”* – Eliyahu Goldratt
+## 🛠️ Related Repos & Continuous Learning 📚✨
+
+Ready to level up your shell scripting and automation game? Explore my key repositories that showcase a progressive journey from basics to cloud-grade automation:
+
+- 🐚 [LEARN-SHELLSCRIPT-PRACTICE](https://github.com/MAHALAKSHMImahalakshmi/LEARN-SHELLSCRIPT-PRACTICE) – Start here! Fundamentals, practice scripts, and troubleshooting gems for shell scripting newbies and pros alike. 🔍💡
+- ☁️ [Roboshop-Automation-Scripts-AWS](https://github.com/MAHALAKSHMImahalakshmi/Roboshop-Automation-Scripts-AWS) – Jump into real-world, cloud-ready automation scripts that power robust microservices on AWS! 🚀🔥
+- 🤖 [Automated-Roboshop-Setup-AWS.git](https://github.com/MAHALAKSHMImahalakshmi/Automated-Roboshop-Setup-AWS.git) – Hands-on integrated infrastructure setup scripts for a seamless Roboshop deployment experience. 🌐⚙️
+
+---
+
+## 🤝 Credits & Connect 💬❤️
+
+Inspired by **cloud-native**, production-grade DevOps workflows and automation excellence.  
+Crafted with passion and dedication by [**Mahalakshmi**](https://github.com/MAHALAKSHMImahalakshmi) 👩‍💻✨
+
+---
+
+## 🌱 Final Note 🚀🌟
+
+Shell scripting has been a *game changer* in my DevOps career — it taught me the true **power of automation, modularity, and smart troubleshooting**. 💪🛠️
+
+Let’s continue to build, automate, and innovate—*one script at a time!*  
+Join me on this journey, and together we’ll unlock greater efficiencies and creative solutions in automation. 🎯💡✨
+
+Happy scripting! 🎉🐚🚦
+
